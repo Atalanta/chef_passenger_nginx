@@ -1,0 +1,14 @@
+server {
+    listen <%= @port %> default_server;
+    listen [::]:<%= @port %> default_server ipv6only=on;
+
+    server_name <%= @server_name %>;
+    passenger_enabled on;
+    rails_env    <%= @environment %>;
+    root         <%= @root %>;
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   html;
+    }
+}
