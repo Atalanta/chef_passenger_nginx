@@ -1,5 +1,3 @@
-require 'pry'
-
 def whyrun_supported?
   true
 end
