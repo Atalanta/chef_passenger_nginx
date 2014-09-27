@@ -1,11 +1,14 @@
 server {
     listen <%= @port %> default_server;
     listen [::]:<%= @port %> default_server ipv6only=on;
+    listen 443 ssl;
 
     server_name <%= @server_name %>;
     passenger_enabled on;
     rails_env    <%= @environment %>;
     root         <%= @root %>;
+    ssl_certificate /etc/nginx/ssl/nginx.crt;
+    ssl_certificate_key /etc/nginx/ssl/nginx.key;
 
     error_page   500 502 503 504  /50x.html;
     location = /50x.html {

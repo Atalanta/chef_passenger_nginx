@@ -27,3 +27,13 @@ template '/etc/nginx/nginx.conf' do
   source 'nginx.conf.erb'
   notifies :restart, 'service[nginx]', :immediately
 end
+
+directory '/etc/nginx/ssl'
+
+cookbook_file '/etc/nginx/ssl/nginx.crt' do
+  source 'nginx.crt'
+end
+
+cookbook_file '/etc/nginx/ssl/nginx.key' do
+  source 'nginx.key'
+end

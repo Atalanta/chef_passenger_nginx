@@ -1,5 +1,10 @@
 if defined?(ChefSpec)
-  def add_apt_repo(repo)
-    ChefSpec::Matchers::ResourceMatcher.new(:apt_repo, :add, repo)
+  def create_passenger_nginx_vhost(vhost)
+    ChefSpec::Matchers::ResourceMatcher.new(:passenger_nginx_vhost, :create, vhost)
   end
+
+  def delete_passenger_nginx_vhost(vhost)
+    ChefSpec::Matchers::ResourceMatcher.new(:passenger_nginx_vhost, :delete, vhost)
+  end
+
 end
