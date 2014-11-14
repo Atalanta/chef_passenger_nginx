@@ -17,6 +17,15 @@ describe 'Passenger Nginx Default Recipe' do
     expect(command 'passenger --version').to return_stdout /^Phusion Passenger version \d+.\d+.\d+$/
   end
 
+  it 'should install ruby-switch' do
+    expect(package 'ruby-switch').to be_installed
+    expect((command 'ruby-switch --list').stdout).to match /^ruby/
+  end
+
+  it 'should not use Ruby 2.2-preview' do
+    expect((command 'ruby-switch --check').stdout).to match /Currently using: ruby2.1/
+  end
+
   it 'should install Ruby 2.1' do
     expect(package 'ruby2.1').to be_installed
     expect(package 'ruby2.1-dev').to be_installed
