@@ -10,6 +10,7 @@ RSpec.configure do |config|
 
     before(:each) do
       stub_command(/apt-key list/).and_return(false)
+      stub_command(/ruby-switch/).and_return(false)
     end
 
     let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
@@ -38,6 +39,14 @@ RSpec.configure do |config|
     it 'installs Ruby 2.1' do
       expect(chef_run).to install_package('ruby2.1')
       expect(chef_run).to install_package('ruby2.1-dev')
+    end
+
+    it 'installs ruby-switch' do
+      expect(chef_run).to install_package('ruby-switch')
+    end
+
+    it 'sets the default Ruby to 2.1' do
+      expect(chef_run).to run_execute('ruby-switch --set ruby-2.1')
     end
 
     it 'enables and starts nginx' do

@@ -18,6 +18,12 @@ package 'nginx-full'
 package 'passenger'
 package 'ruby2.1'
 package 'ruby2.1-dev'
+package 'ruby-switch'
+
+execute 'Set default Ruby to 2.1' do
+  command 'ruby-switch --set ruby2.1'
+  not_if 'ruby-switch --check | grep -q ruby2\.1' 
+end
 
 service 'nginx' do
   action [:enable, :start]
