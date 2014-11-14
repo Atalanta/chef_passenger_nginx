@@ -29,7 +29,7 @@ describe 'Passenger Nginx Default Recipe' do
   it 'should install Ruby 2.1' do
     expect(package 'ruby2.1').to be_installed
     expect(package 'ruby2.1-dev').to be_installed
-    expect((command 'ruby --version').stdout).to match /^ruby 2\.1\.2p\d+/
+    expect((command 'ruby --version').stdout).to match /^ruby 2\.1\.\d+p\d+/
   end
 
   it 'should set the passenger root' do
