@@ -25,6 +25,8 @@ execute 'Set default Ruby to 2.1' do
   not_if 'ruby-switch --check | grep -q ruby2\.1' 
 end
 
+directory '/etc/nginx/ssl'
+
 service 'nginx' do
   action [:enable, :start]
 end
@@ -34,12 +36,4 @@ template '/etc/nginx/nginx.conf' do
   notifies :restart, 'service[nginx]', :immediately
 end
 
-directory '/etc/nginx/ssl'
 
-cookbook_file '/etc/nginx/ssl/nginx.crt' do
-  source 'nginx.crt'
-end
-
-cookbook_file '/etc/nginx/ssl/nginx.key' do
-  source 'nginx.key'
-end
