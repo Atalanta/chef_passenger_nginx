@@ -1,3 +1,11 @@
+v0.3.2
+======
+
+- Change: Do not hard code SSL certs or paths
+- Change: Use the vhost name to render the SSL directive
+- Improvement: Support enable, disable, create, delete
+
+
 v0.3.1
 ======
 
