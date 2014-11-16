@@ -9,6 +9,7 @@ server {
     root         <%= @root %>;
     ssl_certificate /etc/nginx/ssl/<%= @server_name %>.crt;
     ssl_certificate_key /etc/nginx/ssl/<%= @server_name %>.key;
+    limit_req zone=one burst=5;
 
     error_page   500 502 503 504  /50x.html;
     location = /50x.html {
