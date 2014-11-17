@@ -5,13 +5,12 @@ default['fail2ban']['filters'] = {
      },
 }
 
-default['fail2ban']['services'] = {
+normal['fail2ban']['services'] = {
   'nginx-req-limit' => {
-        "enabled" => "false",
+        "enabled" => "true",
         "port" => "http,https",
         "filter" => "nginx-req-limit",
         "logpath" => "/var/log/nginx/*error.log",
-#        "action" => 'iptables-multiport[name=ReqLimit, port="http,https", protocol=tcp]',
         "maxretry" => "6"
      }
 }
