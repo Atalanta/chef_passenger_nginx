@@ -5,6 +5,7 @@
 # Copyright (c) 2014 The Authors, All Rights Reserved.
 
 include_recipe 'apt-repo'
+include_recipe 'fail2ban'
 
 apt_repo "passenger" do
   url "https://oss-binaries.phusionpassenger.com/apt/passenger"
