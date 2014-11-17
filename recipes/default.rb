@@ -37,4 +37,12 @@ template '/etc/nginx/nginx.conf' do
   notifies :restart, 'service[nginx]', :immediately
 end
 
-
+ruby_block 'Add nginx-req-limit action' do
+  block do
+    line = 'action = iptables-multiport[name=ReqLimit, port="http,https", protocol=tcp]'
+    file = Chef::Util::FileEdit.new('/etc/fail2ban/jail.local')
+    file.insert_line_if_no_match(/#{line}/, line)
+    file.write_file
+  end
+  not_if { ::File.readlines("/etc/fail2ban/jail.local").select { |line| line =~ /name-ReqLimit/ } }
+end
