@@ -44,5 +44,6 @@ ruby_block 'Add nginx-req-limit action' do
     file.insert_line_if_no_match(/#{line}/, line)
     file.write_file
   end
-  not_if { ::File.readlines("/etc/fail2ban/jail.local").select { |line| line =~ /name-ReqLimit/ } }
+  not_if 'grep -q name=ReqLimit /etc/fail2ban/jail.local'
+  notifies :restart, 'service[fail2ban]'
 end
